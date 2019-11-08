@@ -5,14 +5,16 @@
 
 /** STRUCTS */
 
-struct Vertex{
+struct Vertex
+{
   vec4 position; 
   vec2 texcoords;
 };
 
 /** LAYOUT */
 layout(location = 0) in vec4 la_position; 
-layout(location = 1) in vec2 la_texcoords;
+layout(location = 1) in vec3 la_normal;
+layout(location = 2) in vec2 la_texcoords;
   
 /** UNIFORM  VARIABLES */
 
@@ -32,12 +34,12 @@ out vec4 outColor;
 /** IN VARIABLES */
 
 /** MAIN */
-void main(){
+void main()
+{
   mat4 mv = u_view * u_projection ;
   mat4 mvp = mv * u_world  ;
   gl_Position = (u_world * la_position);
-//  gl_Position = (gl_Position * u_view);
- // gl_Position = (gl_Position * u_projection);
+
   outTexcoords = la_texcoords;
   outColor = vec4(0.0f,0.0f,0.8f,1.0f);
 }
