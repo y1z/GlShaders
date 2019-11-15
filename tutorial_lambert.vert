@@ -1,4 +1,3 @@
-
 #version 430 core 
 /*! VERTEX SHADER 
 \author Yhaliff Said Barraza
@@ -24,9 +23,9 @@ struct LightData
 };
 
 /** LAYOUT */
-layout(location = 0) in vec4 la_position; 
-layout(location = 1) in vec3 la_normal;
-layout(location = 2) in vec2 la_texcoords;
+layout(location = 0)in vec4 la_position; 
+layout(location = 1)in vec3 la_normal;
+layout(location = 2)in vec2 la_texcoords;
   
 /** UNIFORM  VARIABLES */
 
@@ -34,26 +33,44 @@ layout(location = 2) in vec2 la_texcoords;
 uniform mat4 uProjection;
 //represent the view matrix 
 uniform mat4 uView;
-uniform u_worldAndColor 
+
+layout(std140) uniform u_worldAndColor 
 {
   mat4x4 u_world;
   vec4 u_color;
 };
 
- uniform LightData uLight;
+// has all data related with light
+
+// color data 
+uniform vec4 uAmbientColor;
+uniform vec4 uLightColor;
+// position and direction data 
+uniform vec4 uLightPos;
+uniform vec4  uLightDir;
+// how bright are the lights 
+uniform float uLightIntensity;
+uniform float uAmbientIntensity;
+
 
 /** OUT VARIABLES */ 
 out vec2 outTexcoords;
-//out vec4 outColor;
+out vec3 outNormal;
 /** IN VARIABLES */
 
 /** MAIN */
 void main()
 {
-  mat4 mvp = u_world * uView * uProjection;
-  gl_Position = (  la_position *  mvp  );
+  //mat4 mvp = u_world * uView * uProjection;
+  /* needs to be multiplied in this order
+  vector4 * matrix4by4 */
+  gl_Position = la_position * (u_world * uView * uProjection); // * mvp  ;
 
+  vec4 finalNormal = normalize(vec4(la_normal.xyz ,0.0f));
+  finalNormal = finalNormal * u_world;
+  //outNormal = vec3(finalNormal.xyz) ;
+
+  outNormal = la_normal;
   outTexcoords = la_texcoords;
-  //outColor = vec4(0.0f,0.0f,0.8f,1.0f);
 }
 
