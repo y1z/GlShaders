@@ -61,16 +61,12 @@ out vec3 outNormal;
 /** MAIN */
 void main()
 {
-  //mat4 mvp = u_world * uView * uProjection;
   /* needs to be multiplied in this order
   vector4 * matrix4by4 */
-  gl_Position = la_position * (u_world * uView * uProjection); // * mvp  ;
+  gl_Position = la_position * (u_world * uView * uProjection);
 
-  vec4 finalNormal = normalize(vec4(la_normal.xyz ,0.0f));
-  finalNormal = finalNormal * u_world;
-  //outNormal = vec3(finalNormal.xyz) ;
-
-  outNormal = la_normal;
+  vec4 finalNormal = normalize(vec4(la_normal.xyz ,0.0f) * u_world);
+  outNormal = vec3(finalNormal.xyz) ;
   outTexcoords = la_texcoords;
 }
 

@@ -36,7 +36,6 @@ in vec3 outNormal;
 
 /** OUT VARIABLES */ 
 out vec4 resultColor;
-//out vec2 resultTexcoords;
 
 /** MAIN*/
 void main()
@@ -45,5 +44,5 @@ void main()
 */
 float InverDotNormal =  clamp(dot(-uLightDir.xyz, outNormal),0,1);
 // color the pixels that are being hit 
- resultColor = texture(uTextureSampler,outTexcoords) * InverDotNormal; 
+ resultColor = texture(uTextureSampler,outTexcoords)  * InverDotNormal; 
 }
