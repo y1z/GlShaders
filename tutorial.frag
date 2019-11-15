@@ -37,7 +37,7 @@ in vec3 outNormal;
 /** OUT VARIABLES */ 
 out vec4 resultColor;
 
-/** MAIN*/
+/*** MAIN*/
 void main()
 {
 /* find out which pixel is being hit by the light 
