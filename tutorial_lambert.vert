@@ -52,7 +52,6 @@ uniform vec4  uLightDir;
 uniform float uLightIntensity;
 uniform float uAmbientIntensity;
 
-
 /** OUT VARIABLES */ 
 out vec2 outTexcoords;
 out vec3 outNormal;

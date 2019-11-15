@@ -44,5 +44,5 @@ void main()
 */
 float InverDotNormal =  clamp(dot(-uLightDir.xyz, outNormal),0,1);
 // color the pixels that are being hit 
- resultColor = texture(uTextureSampler,outTexcoords)  * InverDotNormal; 
+ resultColor = texture(uTextureSampler,outTexcoords) * clamp(u_color * uLightColor,0.0f,1.0f)  * InverDotNormal; 
 }
