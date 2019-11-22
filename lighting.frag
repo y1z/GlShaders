@@ -18,16 +18,18 @@ layout(std140) uniform u_worldAndColor
   vec4 u_color;
 };
 
+
 // color data
 uniform vec4 uAmbientColor;
-
-uniform vec4 uLightColor;
+uniform vec4 uDiffuseColor;
+uniform vec4 uSpecularColor;
 // position and direction data
 uniform vec4 uLightPos;
-uniform vec4  uLightDir;
+uniform vec3  uLightDir;
 // how bright are the lights
-uniform float uLightIntensity;
+uniform float uDiffuseIntensity;
 uniform float uAmbientIntensity;
+uniform float uSpecularIntensity;
 
 
 /** IN VARIABLES */
@@ -45,5 +47,5 @@ void main()
 */
 float InverDotNormal =  clamp(dot(-uLightDir.xyz, outNormal),0,1);
 // color the pixels that are being hit
- resultColor = texture(uTextureSampler,outTexcoords) * clamp(u_color * uLightColor,0.0f,1.0f)  * InverDotNormal;
+ resultColor = texture(uTextureSampler,outTexcoords) * clamp(u_color * uDiffuseColor,0.0f,1.0f)  * InverDotNormal;
 }
