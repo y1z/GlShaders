@@ -44,14 +44,15 @@ layout(std140) uniform u_worldAndColor
 
 // color data
 uniform vec4 uAmbientColor;
-uniform vec4 uLightColor;
+uniform vec4 uDiffuseColor;
 uniform vec4 uSpecularColor;
 // position and direction data
 uniform vec4 uLightPos;
 uniform vec3  uLightDir;
 // how bright are the lights
-uniform float uLightIntensity;
+uniform float uDiffuseIntensity;
 uniform float uAmbientIntensity;
+uniform float uSpecularIntensity;
 
 /** OUT VARIABLES */
 out vec2 outTexcoords;

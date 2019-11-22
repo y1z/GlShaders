@@ -20,6 +20,7 @@ layout(std140) uniform u_worldAndColor
 
 // color data
 uniform vec4 uAmbientColor;
+
 uniform vec4 uLightColor;
 // position and direction data
 uniform vec4 uLightPos;

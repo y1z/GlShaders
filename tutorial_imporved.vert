@@ -1,34 +1,34 @@
-#version 430 core 
-/*! VERTEX SHADER 
+#version 430 core
+/*! VERTEX SHADER
 \author Yhaliff Said Barraza
- */
+*/
 
 /** STRUCTS */
 
 struct Vertex
 {
-  vec4 position; 
+  vec4 position;
   vec2 texcoords;
 };
 
 /** LAYOUT */
-layout(location = 0) in vec4 la_position; 
+layout(location = 0) in vec4 la_position;
 layout(location = 1) in vec3 la_normal;
 layout(location = 2) in vec2 la_texcoords;
-  
+
 /** UNIFORM  VARIABLES */
 
-// represents the projection matrix 
+// represents the projection matrix
 uniform mat4 u_projection;
-//represent the view matrix 
+//represent the view matrix
 uniform mat4 u_view;
-uniform u_worldAndColor 
+uniform u_worldAndColor
 {
   mat4x4 u_world;
   vec4 u_color;
 };
 
-/** OUT VARIABLES */ 
+/** OUT VARIABLES */
 out vec2 outTexcoords;
 out vec4 outColor;
 /** IN VARIABLES */
